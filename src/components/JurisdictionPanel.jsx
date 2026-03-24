@@ -214,31 +214,14 @@ export default function JurisdictionPanel({ jurisdictions, selectedJurisdiction,
               </ul>
             </div>
 
-            {/* Explore button (from map click) — always visible when jurisdiction is selected */}
+            {/* Explore button — routes to product selection */}
             <button
               onClick={handleExplore}
-              className="w-full py-2 rounded-lg text-sm font-medium text-white flex items-center justify-center gap-2 transition-opacity hover:opacity-90"
-              style={{ backgroundColor: '#4B5563', fontFamily: 'Inter, sans-serif' }}
+              className="w-full py-2.5 rounded-lg text-sm font-semibold text-white flex items-center justify-center gap-2 transition-opacity hover:opacity-90"
+              style={{ backgroundColor: '#155DFC', fontFamily: 'Inter, sans-serif' }}
             >
               Explore {selectedJurisdiction.name} Services
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                <path d="M5 12h14M13 6l6 6-6 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-
-            {/* ── 3. Proceed button ── */}
-            <button
-              onClick={handleProceed}
-              className="w-full py-2.5 rounded-lg text-sm font-semibold flex items-center justify-center gap-2 transition-all"
-              style={{
-                backgroundColor: '#155DFC',
-                color: '#fff',
-                cursor: 'pointer',
-                fontFamily: 'Inter, sans-serif',
-              }}
-            >
-              Proceed with {selectedJurisdiction.name}
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                 <path d="M5 12h14M13 6l6 6-6 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>

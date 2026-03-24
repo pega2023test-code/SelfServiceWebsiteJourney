@@ -47,7 +47,7 @@ const UnlockIcon = () => (
 );
 
 export default function WorldMap({ jurisdictions, selectedJurisdiction, onMarkerClick }) {
-  const [zoom, setZoom] = useState(1.4);
+  const [zoom, setZoom] = useState(1.8);
   const [center, setCenter] = useState([20, 10]);
   const [zoomLocked, setZoomLocked] = useState(true);
 

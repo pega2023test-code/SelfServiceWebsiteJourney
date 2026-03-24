@@ -58,14 +58,13 @@ export default function Navbar() {
         {/* Desktop Nav Links */}
         <div className="hidden lg:flex items-center gap-1 xl:gap-2">
           {navLinks.map((link) => (
-            <a
+            <button
               key={link}
-              href="#"
               className="px-2 xl:px-3 py-2 text-sm font-medium hover:text-[#155DFC] transition-colors whitespace-nowrap"
-              style={{ color: '#001F3F', fontFamily: 'Inter, sans-serif' }}
+              style={{ color: '#001F3F', fontFamily: 'Inter, sans-serif', background: 'none', border: 'none', cursor: 'default' }}
             >
               {link}
-            </a>
+            </button>
           ))}
           <button
             className="flex items-center gap-1 px-2 xl:px-3 py-2 text-sm font-medium hover:text-[#155DFC] transition-colors whitespace-nowrap"
@@ -109,14 +108,13 @@ export default function Navbar() {
       {mobileOpen && (
         <div className="lg:hidden bg-white border-t border-gray-100 px-8 py-4 flex flex-col gap-2">
           {navLinks.map((link) => (
-            <a
+            <button
               key={link}
-              href="#"
-              className="py-2 text-sm font-medium hover:text-[#155DFC] transition-colors"
-              style={{ color: '#001F3F', fontFamily: 'Inter, sans-serif' }}
+              className="py-2 text-sm font-medium hover:text-[#155DFC] transition-colors text-left"
+              style={{ color: '#001F3F', fontFamily: 'Inter, sans-serif', background: 'none', border: 'none', cursor: 'default' }}
             >
               {link}
-            </a>
+            </button>
           ))}
           <button
             className="flex items-center gap-1 py-2 text-sm font-medium hover:text-[#155DFC] transition-colors text-left"
