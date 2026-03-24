@@ -34,14 +34,7 @@ export default function JurisdictionPanel({ jurisdictions, selectedJurisdiction,
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  // tracks whether current selection came from the dropdown (enables Proceed)
-  const [dropdownSelected, setDropdownSelected] = useState(false);
   const dropdownRef = useRef(null);
-
-  // If parent clears selection (e.g. region change), reset dropdown flag too
-  useEffect(() => {
-    if (!selectedJurisdiction) setDropdownSelected(false);
-  }, [selectedJurisdiction]);
 
   useEffect(() => {
     function handleClickOutside(e) {
@@ -63,19 +56,17 @@ export default function JurisdictionPanel({ jurisdictions, selectedJurisdiction,
 
   function handleDropdownSelect(jurisdiction) {
     onSelect(jurisdiction);
-    setDropdownSelected(true);
     setDropdownOpen(false);
     setSearchQuery('');
   }
 
   function handleClear() {
     onSelect(null);
-    setDropdownSelected(false);
     setSearchQuery('');
   }
 
   function handleProceed() {
-    if (!selectedJurisdiction || !dropdownSelected) return;
+    if (!selectedJurisdiction) return;
     navigate('/products', { state: { jurisdiction: selectedJurisdiction } });
   }
 
@@ -85,7 +76,7 @@ export default function JurisdictionPanel({ jurisdictions, selectedJurisdiction,
     navigate('/products', { state: { jurisdiction: selectedJurisdiction } });
   }
 
-  const proceedEnabled = !!selectedJurisdiction && dropdownSelected;
+  const proceedEnabled = !!selectedJurisdiction;
 
   return (
     <div className="flex flex-col gap-3">
@@ -235,29 +226,21 @@ export default function JurisdictionPanel({ jurisdictions, selectedJurisdiction,
               </svg>
             </button>
 
-            {/* ── 3. Proceed button — only active when selected via dropdown ── */}
+            {/* ── 3. Proceed button ── */}
             <button
               onClick={handleProceed}
-              disabled={!proceedEnabled}
-              title={!proceedEnabled ? 'Please select a jurisdiction from the dropdown first' : ''}
               className="w-full py-2.5 rounded-lg text-sm font-semibold flex items-center justify-center gap-2 transition-all"
               style={{
-                backgroundColor: proceedEnabled ? '#155DFC' : '#E5E7EB',
-                color: proceedEnabled ? '#fff' : '#9CA3AF',
-                cursor: proceedEnabled ? 'pointer' : 'not-allowed',
+                backgroundColor: '#155DFC',
+                color: '#fff',
+                cursor: 'pointer',
                 fontFamily: 'Inter, sans-serif',
               }}
             >
-              {proceedEnabled ? (
-                <>
-                  Proceed with {selectedJurisdiction.name}
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                    <path d="M5 12h14M13 6l6 6-6 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </>
-              ) : (
-                'Select from dropdown to Proceed'
-              )}
+              Proceed with {selectedJurisdiction.name}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M5 12h14M13 6l6 6-6 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
             </button>
 
           </div>
